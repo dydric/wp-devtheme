@@ -1,2 +1,2 @@
-# devtheme
+# Wordpress DevTheme
 Another WordPress theme
