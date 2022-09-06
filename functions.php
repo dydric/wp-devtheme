@@ -170,6 +170,11 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * Advanced Custom Fields Settings
+ */
+require get_template_directory() . '/inc/advanced-custom-fields.php';
+
+/**
  * Gravity Forms settings
  */
 require get_template_directory() . '/inc/gravity-forms.php';
