@@ -185,6 +185,11 @@ require get_template_directory() . '/inc/gravity-forms.php';
 require get_template_directory() . '/inc/gutenberg-editor.php';
 
 /**
+ * Gutenberg Editor settings
+ */
+require get_template_directory() . '/inc/tinymce-editor.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
