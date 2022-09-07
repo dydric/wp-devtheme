@@ -9,53 +9,65 @@
 
 ?>
 
+<?php
+// ACF ROWS LOOP
+if( have_rows('rows') ): ?>
+  <?php while( have_rows('rows') ): the_row(); ?>
+    <?php if( get_row_layout() == 'content' ): ?>
+      <?php get_template_part('template-parts/acf-rows/row', get_row_layout()); ?>
+    <?php elseif( get_row_layout() == 'image' ): ?>
+
+    <?php endif; ?>
+  <?php endwhile; ?>
+<?php endif; ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+  <header class="entry-header">
+    <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<?php
-			if(get_field('subtitle'))
-			{
-				echo '<p>' . get_field('subtitle') . '</p>';
-			}
-			?>
-	</header><!-- .entry-header -->
+    <?php
+      if(get_field('subtitle'))
+      {
+        echo '<p>' . get_field('subtitle') . '</p>';
+      }
+      ?>
+  </header><!-- .entry-header -->
 
-	<?php wp_devtheme_post_thumbnail(); ?>
+  <?php wp_devtheme_post_thumbnail(); ?>
 
-	<div class="entry-content">
-		<?php
-		the_content();
+  <div class="entry-content">
+    <?php
+    the_content();
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'wp-devtheme' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
+    wp_link_pages(
+      array(
+        'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'wp-devtheme' ),
+        'after'  => '</div>',
+      )
+    );
+    ?>
+  </div><!-- .entry-content -->
 
-	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
-			<?php
-			edit_post_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Edit <span class="screen-reader-text">%s</span>', 'wp-devtheme' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
-			?>
-		</footer><!-- .entry-footer -->
-	<?php endif; ?>
+  <?php if ( get_edit_post_link() ) : ?>
+    <footer class="entry-footer">
+      <?php
+      edit_post_link(
+        sprintf(
+          wp_kses(
+            /* translators: %s: Name of current post. Only visible to screen readers */
+            __( 'Edit <span class="screen-reader-text">%s</span>', 'wp-devtheme' ),
+            array(
+              'span' => array(
+                'class' => array(),
+              ),
+            )
+          ),
+          wp_kses_post( get_the_title() )
+        ),
+        '<span class="edit-link">',
+        '</span>'
+      );
+      ?>
+    </footer><!-- .entry-footer -->
+  <?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
