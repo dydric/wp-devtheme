@@ -1,5 +1,9 @@
 <?php
 
+// SPEED UP ACF
+// https://www.advancedcustomfields.com/blog/acf-pro-5-5-13-update/
+add_filter('acf/settings/remove_wp_meta_box', '__return_true');
+
 // ADD ACF OPTION PAGES
 if( function_exists('acf_add_options_page') ) {
   acf_add_options_page(array(
@@ -56,7 +60,7 @@ function custom_menu_order( $menu_ord ) {
 add_filter('custom_menu_order', 'custom_menu_order');
 add_filter('menu_order', 'custom_menu_order');
 
-// ADD TOOLBAR SELECT WITH FULL AND VERY SIMPLE OPTIONS
+// ADD SELECT WITH TOOLBAR OPTIONS
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 function my_toolbars( $toolbars ){
   // Uncomment to view format of $toolbars
@@ -69,7 +73,7 @@ function my_toolbars( $toolbars ){
   // Add a new toolbar called "Very Simple"
   // - this toolbar has only 1 row of buttons
   $toolbars['Very Simple' ] = array();
-  $toolbars['Very Simple' ][1] = array('formatselect', 'bold' , 'italic' , 'underline', 'link', 'bullist', 'numlist' );
+  $toolbars['Very Simple' ][1] = array('formatselect', 'bold' , 'italic' , 'underline', 'link', 'bullist', 'numlist', 'alignleft', 'aligncenter', 'alignright' );
 
   // Edit the "Full" toolbar and remove 'code'
   // - delete from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
@@ -84,12 +88,5 @@ function my_toolbars( $toolbars ){
   // return $toolbars - IMPORTANT!
   return $toolbars;
 }
-
-
-// Customize the Wysiwyg blockformats
-add_filter( 'tiny_mce_before_init', function( $settings ){
-	$settings['block_formats'] = 'Paragraph=p;Heading=h2;Subheading=h3';
-	return $settings;
-} );
 
 ?>
